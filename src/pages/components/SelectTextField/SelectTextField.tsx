@@ -3,26 +3,26 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { ISelectTextField } from './types';
 
-export const SelectTextField: React.FC = (): React.ReactElement => {
-    const [currency, setCurrency] = React.useState('');
-
+export const SelectTextField: React.FC<ISelectTextField> = (props): React.ReactElement => {
     const handleChange = (event: SelectChangeEvent) => {
-        setCurrency(event.target.value as string);
+        props.setCurrency(event.target.value as string);
     };
+
     return (
         <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Currency</InputLabel>
             <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={currency}
+                value={props.currency}
                 label="Currency"
                 onChange={handleChange}
             >
-                <MenuItem value={10}>UAH</MenuItem>
-                <MenuItem value={20}>USD</MenuItem>
-                <MenuItem value={30}>RUB</MenuItem>
+                <MenuItem value={'UAH'}>UAH</MenuItem>
+                <MenuItem value={'USD'}>USD</MenuItem>
+                <MenuItem value={'RUB'}>RUB</MenuItem>
             </Select>
         </FormControl>
     );
