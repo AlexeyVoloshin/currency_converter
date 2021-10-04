@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ADD_CURRENCY } from './types';
-import { readSelectedCurrency } from '../utils/localStore';
-import { ICurrency } from '../types/currency';
+import { readSelectedCurrency } from '../../utils/localStore';
+import { ICurrency } from '../../types/currency';
 
 const initialState: ICurrency = {
     current: readSelectedCurrency().currency,
@@ -12,7 +12,7 @@ export const slice = createSlice({
     initialState,
     reducers: {
         addCurrency: (state, action) => {
-            state.current = action.payload.current;
+            state.current = action.payload;
         },
     },
 });

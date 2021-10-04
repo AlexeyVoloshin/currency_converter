@@ -1,35 +1,47 @@
 import React from 'react';
 import { useStyles } from './styles';
-import { SelectTextField } from '../components/SelectTextField/SelectTextField';
+import { SelectTextField } from '../../components/SelectTextField/SelectTextField';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCurrency } from '../../redux/slice';
+import { addCurrency } from './slice';
 import { addSelectedCurrency } from '../../utils/localStore';
 import Box from '@mui/material/Box';
-import { CurrentCurrencyThunk } from '../../redux/thunks';
-import { ICurrencyOptions } from '../../types/currency';
-import { RootState } from '../../redux/store';
+import { currentCurrencyThunk } from './thunks';
+import { AppDispatch, RootState } from '../../redux/store';
+import { ConversionRates, ICurrencyOptions, IItemCurrency } from '../../types/currency';
+import { popularCurrency } from '../../components/SelectTextField/localData';
+import { ListComponent } from '../../components/ListComponent/ListComponent';
 
-export const CurrencySelectionPage: React.FC = (): React.ReactElement => {
+export const Index: React.FC = (): React.ReactElement => {
     const classes = useStyles();
     const currentCurrency = useSelector((state: RootState) => state.currency);
     const [currency, setCurrency] = React.useState(currentCurrency.current);
-    const [errorMessage, setErrorMessage] = React.useState('');
-    const [dataCurrency, setDataCurrency] = React.useState<ICurrencyOptions>();
-    const dispatch = useDispatch();
+    const [dataCurrency, setDataCurrency] = React.useState<IItemCurrency[]>([]);
+    const dispatch: AppDispatch = useDispatch();
+
+    const filterItems = (data: ICurrencyOptions) => {
+        debugger;
+        const conversion_rates: ConversionRates | undefined = data!.conversion_rates;
+        const result: IItemCurrency[] = [];
+        popularCurrency.map((item) => {
+            if (conversion_rates[item.currencyName]) {
+                result.push({
+                    currencyValue: conversion_rates[item.currencyName],
+                    currencyName: item.currencyName,
+                });
+            }
+        });
+        return result;
+    };
 
     const getAllCurrency = async () => {
+        debugger;
         try {
-            const result = await dispatch(CurrentCurrencyThunk({ currency: 'USD' }));
-            if ((result as any).error) {
-                // const error = result.payload as IApiError;
-                setErrorMessage('error');
-                return;
-            }
-            setDataCurrency(result.payload);
+            const result = await dispatch(currentCurrencyThunk({ currency: 'USD' }));
+
+            setDataCurrency(filterItems(result.payload as ICurrencyOptions));
         } catch (error) {
             console.log(error);
         }
-        setErrorMessage('');
     };
 
     React.useEffect(() => {
@@ -74,7 +86,7 @@ export const CurrencySelectionPage: React.FC = (): React.ReactElement => {
                         overflow: 'height',
                     }}
                 >
-                    {}
+                    <ListComponent data={dataCurrency} />
                 </Box>
             </div>
         </div>

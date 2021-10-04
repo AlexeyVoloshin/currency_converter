@@ -18,14 +18,15 @@ export interface IAllCurrencyOptions {
     [key: string]: ICurrencyOptions;
 }
 
-export interface IApiKey {
-    apiKey: string;
-}
-
 export interface ICurrency {
     current: string;
 }
 
 export interface ICurrentCurrency {
     currency: string;
+}
+
+export interface IItemCurrency {
+    currencyValue: number;
+    currencyName: string;
 }

@@ -4,6 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { ISelectTextField } from './types';
+import { popularCurrency } from './localData';
 
 export const SelectTextField: React.FC<ISelectTextField> = (props): React.ReactElement => {
     const handleChange = (event: SelectChangeEvent) => {
@@ -20,9 +21,11 @@ export const SelectTextField: React.FC<ISelectTextField> = (props): React.ReactE
                 label="Currency"
                 onChange={handleChange}
             >
-                <MenuItem value={'UAH'}>UAH</MenuItem>
-                <MenuItem value={'USD'}>USD</MenuItem>
-                <MenuItem value={'RUB'}>RUB</MenuItem>
+                {popularCurrency.map((item) => (
+                    <MenuItem key={item.id} value={item.currencyName}>
+                        {item.currencyName}
+                    </MenuItem>
+                ))}
             </Select>
         </FormControl>
     );
