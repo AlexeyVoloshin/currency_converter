@@ -4,7 +4,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             width: '100%',
-            maxWidth: '1100px',
+            maxWidth: '800px',
             margin: '0 auto',
         },
 
@@ -20,7 +20,9 @@ export const useStyles = makeStyles((theme: Theme) =>
         mainContent: {},
 
         select: {
-            maxWidth: '300px',
+            maxWidth: '100%',
         },
+
+        wrapList: {},
     }),
 );

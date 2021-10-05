@@ -13,12 +13,12 @@ export const SelectTextField: React.FC<ISelectTextField> = (props): React.ReactE
 
     return (
         <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Currency</InputLabel>
+            <InputLabel id="demo-simple-select-label">Select currency</InputLabel>
             <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={props.currency}
-                label="Currency"
+                label="Select currency"
                 onChange={handleChange}
             >
                 {popularCurrency.map((item) => (

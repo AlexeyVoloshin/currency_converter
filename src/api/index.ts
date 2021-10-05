@@ -1,13 +1,13 @@
 import { ApiGetResponse } from '../types/apiGetResponce';
-import { AxiosPromise, AxiosRequestConfig } from 'axios';
+import { AxiosPromise } from 'axios';
 import { api } from '../core';
-import { IAllCurrencyOptions, ICurrentCurrency } from '../types/currency';
+import { IAllCurrencyOptions, IConversion, IConversionProps, ICurrentCurrency } from '../types/currency';
 import { config } from '../config';
-
-export const getAllCurrency = (config: AxiosRequestConfig): AxiosPromise<ApiGetResponse<IAllCurrencyOptions>> =>
-    api.get(`/latest/`, config);
 
 export const getSelectCurrency = (
     currentCurrency: ICurrentCurrency,
 ): AxiosPromise<ApiGetResponse<IAllCurrencyOptions>> =>
     api.get(`/v6/${config.apiKey}/latest/${currentCurrency.currency}`);
+
+export const getConversionResult = (conversion: IConversionProps): AxiosPromise<ApiGetResponse<IConversion>> =>
+    api.get(`/v6/${config.apiKey}/pair/${conversion.base_code}/${conversion.target_code}`);
