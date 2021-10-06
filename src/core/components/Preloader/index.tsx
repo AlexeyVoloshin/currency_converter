@@ -8,7 +8,7 @@ export const Preloader: React.FC = () => {
 
     return (
         <Container className={classes.root}>
-            <CircularProgress size={60} color={'secondary'} />
+            <CircularProgress size={60} color={'primary'} />
         </Container>
     );
 };

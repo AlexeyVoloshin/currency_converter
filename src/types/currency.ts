@@ -1,5 +1,3 @@
-import React from 'react';
-
 export interface ICurrencyOptions {
     result: string;
     documentation: string;
@@ -9,6 +7,7 @@ export interface ICurrencyOptions {
     time_next_update_unix: number;
     time_next_update_utc: string;
     base_code: string;
+    conversion_rate?: number;
     conversion_rates: ConversionRates | number;
 }
 
@@ -31,16 +30,12 @@ export interface IAllCurrencyOptions {
 }
 
 export interface ICurrency {
-    currentCurrency: string;
-    currencyTo: IItemCurrency;
-}
-
-export interface ICurrencyTo {
-    currencyTo: string;
+    base_code: string;
+    conversion_currency: IItemCurrency;
 }
 
 export interface ICurrentCurrency {
-    currency: string;
+    base_code: string;
 }
 
 export interface IItemCurrency {

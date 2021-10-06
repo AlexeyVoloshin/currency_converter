@@ -7,7 +7,7 @@ import { config } from '../config';
 export const getSelectCurrency = (
     currentCurrency: ICurrentCurrency,
 ): AxiosPromise<ApiGetResponse<IAllCurrencyOptions>> =>
-    api.get(`/v6/${config.apiKey}/latest/${currentCurrency.currency}`);
+    api.get(`/v6/${config.apiKey}/latest/${currentCurrency.base_code}`);
 
 export const getConversionResult = (conversion: IConversionProps): AxiosPromise<ApiGetResponse<IConversion>> =>
     api.get(`/v6/${config.apiKey}/pair/${conversion.base_code}/${conversion.target_code}`);

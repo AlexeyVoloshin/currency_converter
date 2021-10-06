@@ -1,4 +1,4 @@
 export interface IConversionData {
-    from: number;
-    to: number;
+    sum: number;
+    conversion_rate: number;
 }

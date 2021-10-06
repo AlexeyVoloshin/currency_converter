@@ -4,8 +4,8 @@ import { readSelectedCurrency } from '../../utils/localStore';
 import { ICurrency } from '../../types/currency';
 
 const initialState: ICurrency = {
-    currentCurrency: readSelectedCurrency().currency,
-    currencyTo: {
+    base_code: readSelectedCurrency().base_code,
+    conversion_currency: {
         currency_name: '',
         conversion_rate: 0,
     },
@@ -15,16 +15,16 @@ export const slice = createSlice({
     name: ADD_CURRENCY,
     initialState,
     reducers: {
-        addCurrency: (state, action) => {
-            state.currentCurrency = action.payload;
+        addBaseCode: (state, action) => {
+            state.base_code = action.payload;
         },
-        addCurrencyTo: (state, action) => {
-            state.currencyTo = action.payload;
+        addConversionCurrency: (state, action) => {
+            state.conversion_currency = action.payload;
         },
     },
 });
 
 // Action creators are generated for each case reducer function
-export const { addCurrency, addCurrencyTo } = slice.actions;
+export const { addBaseCode, addConversionCurrency } = slice.actions;
 
 export const currency = slice.reducer;

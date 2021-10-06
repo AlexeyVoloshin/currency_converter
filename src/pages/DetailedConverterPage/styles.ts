@@ -37,4 +37,13 @@ export const useStyles = makeStyles({
             border: '2px solid',
         },
     },
+
+    input: {
+        display: 'flex',
+        flexDirection: 'column',
+
+        '& label': {
+            color: '#666',
+        },
+    },
 });

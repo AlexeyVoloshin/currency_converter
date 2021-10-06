@@ -11,3 +11,9 @@ export interface IApiError {
      */
     isNotHumanreadable?: boolean;
 }
+
+export interface IApiErrorMessage {
+    error?: {
+        message: string;
+    };
+}

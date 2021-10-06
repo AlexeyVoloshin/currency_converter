@@ -10,12 +10,11 @@ export const SelectTextField: React.FC<ISelectTextField> = (props): React.ReactE
     const handleChange = (event: SelectChangeEvent) => {
         props.setCurrency(event.target.value as string);
     };
-
     return (
         <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Select currency</InputLabel>
+            <InputLabel id="select-label">Select currency</InputLabel>
             <Select
-                labelId="demo-simple-select-label"
+                labelId="select-label"
                 id="demo-simple-select"
                 value={props.currency}
                 label="Select currency"
